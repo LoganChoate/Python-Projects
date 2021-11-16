@@ -31,7 +31,7 @@ count = 0
 for i in fileList:
     if i.endswith(".txt"):
         foundIt2.append(i)
-##print(foundIt2)
+print(foundIt2)
 
 ## this code inserts the searched for values into the database
 conn = sqlite3.connect("sub_assign.db")
@@ -45,13 +45,13 @@ with conn:
     conn.commit()
 conn.close()
 
-##this code prints out the .txt files to the console
-conn = sqlite3.connect("sub_assign.db")
-
-with conn:
-    cur = conn.cursor()
-    cur.execute("SELECT col_fileName FROM tbl_files")
-    varFile = cur.fetchall()
-    for item in varFile:
-        msg = "File Names: {}".format(item[0])
-    print(foundIt2)
+####this code prints out the .txt files to the console
+##conn = sqlite3.connect("sub_assign.db")
+##
+##with conn:
+##    cur = conn.cursor()
+##    cur.execute("SELECT col_fileName FROM tbl_files")
+##    varFile = cur.fetchall()
+##    for item in varFile:
+##        msg = "File Names: {}".format(item[0])
+##    print(foundIt2)
