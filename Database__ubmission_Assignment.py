@@ -16,22 +16,32 @@ with conn:
 conn.close()
 
 ##this piece of code reads through a list and pulls out certain info
-fileList = ("infomation.docx", "Hello.txt", "myImage.png", \
+fileList = ("information.docx", "Hello.txt", "myImage.png", \
             "myMovie.mpg", "world.txt", "data.pdf", "myPhoto.jpg")
 foundIt = []
+foundIt2 = []
 
 for item in fileList:
     if ".txt" in item:
         foundIt.append(item)
+        
+match = ""
+count = 0
 
+for i in fileList:
+    if i.endswith(".txt"):
+        foundIt2.append(i)
+##print(foundIt2)
 
 ## this code inserts the searched for values into the database
 conn = sqlite3.connect("sub_assign.db")
 
 with conn:
     cur = conn.cursor()
-    cur.execute("INSERT INTO tbl_files(col_fileName, col_fileName) VALUES (?, ?)", \
-                (foundIt))
+    cur.execute("INSERT INTO tbl_files(col_fileName) VALUES (?)", \
+                (foundIt2[0],))
+    cur.execute("INSERT INTO tbl_files(col_fileName) VALUES (?)", \
+                (foundIt2[1],))
     conn.commit()
 conn.close()
 
@@ -43,5 +53,5 @@ with conn:
     cur.execute("SELECT col_fileName FROM tbl_files")
     varFile = cur.fetchall()
     for item in varFile:
-        msg = "File Name: {}".format(item[0])
-    print(msg)
+        msg = "File Names: {}".format(item[0])
+    print(foundIt2)
