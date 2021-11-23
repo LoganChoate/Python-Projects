@@ -16,7 +16,7 @@ class ParentWindow(Frame):
 
 
 
-
+## This code is the initialization call of the main method
 if __name__ == "__main__":
     root = Tk()
     App = ParentWindow(root)
